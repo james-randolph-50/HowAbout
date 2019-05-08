@@ -44,9 +44,14 @@ class App extends Component {
     return (
           <ul>
             {breweries.map(brewery => (
+              <div>
               <li key={brewery.id}>
-              <p>Name: {brewery.name} Type: {brewery.brewery_type} Address: {brewery.street} | {brewery.city} | {brewery.state} | {breweries.postal_code} <a href={brewery.website_url} target="_blank">Visit Site</a> </p>
+              <p id="brewery-name">{brewery.name}</p>
+              <p id="brewery-type">{brewery.brewery_type}</p> 
+              <p id="brewery-address">{brewery.street} {brewery.city}, {brewery.state} {breweries.postal_code} </p>
+              <button href={brewery.website_url} target="_blank">Visit Site</button>
               </li>
+              </div>
             ))}
           </ul>
      );
