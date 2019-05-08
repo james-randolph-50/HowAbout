@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 
-const APIURL = `https://api.openbrewerydb.org/breweries`;
-//const citySearch = get user input from form
+const APIURL = 'https://api.openbrewerydb.org/breweries?';
+const citySearch = 'by_state=new_york';
 
 class App extends Component {
   constructor() {
@@ -16,13 +16,13 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch(APIURL)
+    fetch(APIURL + citySearch)
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
             isLoaded: true,
-            breweries: result.breweries
+            breweries: result
           });
         },
         (error) => {
