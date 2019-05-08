@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 const APIURL = 'https://api.openbrewerydb.org/breweries?';
-const citySearch = 'by_state=new_york';
+const citySearch = 'by_city=boston';
 
 class App extends Component {
   constructor() {
@@ -45,7 +45,7 @@ class App extends Component {
           <ul>
             {breweries.map(brewery => (
               <li key={brewery.id}>
-              {brewery.name} {brewery.city}
+              <p>Name: {brewery.name} Type: {brewery.brewery_type} Address: {brewery.street} | {brewery.city} | {brewery.state} | {breweries.postal_code} <a href={brewery.website_url} target="_blank">Visit Site</a> </p>
               </li>
             ))}
           </ul>
