@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
 import './App.css';
+import BreweryDetails from './components/BreweryDetails';
 
 const APIURL = 'https://api.openbrewerydb.org/breweries?';
 const citySearch = 'by_city=boston';
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
 
     this.state = {
       error: null,
       isLoaded: false,
-      breweries: []
+      breweries: [],
+      show: false
     };
+  }
+
+  handleClose() {
+    this.setState({ show: false });
+  }
+
+  handleShow() {
+    this.setState({ show: true });
   }
 
   componentDidMount() {
@@ -42,6 +55,7 @@ class App extends Component {
       return <div>Loading...</div>;
     } else {
     return (
+      <div>
         <ul>
         {breweries.map(brewery => (
           <div className="brewery-card">
@@ -49,12 +63,16 @@ class App extends Component {
           <p id="brewery-name">{brewery.name}</p>
           <p id="brewery-type">{brewery.brewery_type}</p> 
           <p id="brewery-address">{brewery.street} {brewery.city}, {brewery.state} {breweries.postal_code} </p>
-          <button>Details</button>
+          <button onClick={this.handleShow}>Details</button>
           <a href={brewery.website_url} target="_blank">Visit Site</a>
+
+
           </li>
           </div>
         ))}
       </ul>
+      <BreweryDetails name="default"/>
+      </div>
      );
     }
   }
